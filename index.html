@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" data-contrast="normal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mars Outpost – an engineering trade-offs game</title>
+<meta name="description" content="Command a small Mars outpost. Every repair, upgrade and power decision solves one problem and creates another. Built for the NASA Space Apps Challenge.">
+<meta name="theme-color" content="#0a0b2b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c1664a'/%3E%3Ccircle cx='11' cy='12' r='3' fill='%23a04d38'/%3E%3Ccircle cx='21' cy='20' r='4' fill='%23a04d38'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/animations.css">
+<link rel="stylesheet" href="styles/game.css">
+</head>
+<body data-mode="cinematic" data-phase="day">
+<div class="bg" aria-hidden="true">
+  <svg class="bg__nebula" viewBox="0 0 1000 700" preserveAspectRatio="none">
+    <defs><linearGradient id="aurora" x1="0" x2="1"><stop offset="0" stop-color="#3ee0c0"/><stop offset=".5" stop-color="#7a5cff"/><stop offset="1" stop-color="#ff7ab8"/></linearGradient></defs>
+    <path id="nebA" fill="url(#aurora)" d="M0 320 C150 120 350 520 500 320 S850 120 1000 320 V700 H0Z"/>
+    <path id="nebB" fill="none" d="M0 260 C150 460 350 60 500 300 S850 480 1000 240 V700 H0Z"/>
+  </svg>
+  <div class="bg__stars"></div>
+  <div class="bg__orbits"></div>
+  <div class="bg__dust dust-veil"></div>
+</div>
+
+<header class="topbar">
+  <p class="topbar__brand">Mars Outpost</p>
+  <div class="topbar__controls">
+    <button class="btn btn--ghost" id="btn-menu" hidden>Mission menu</button>
+    <button class="btn btn--ghost" id="btn-mode" aria-pressed="false">Mode: Cinematic</button>
+    <button class="btn btn--ghost" id="btn-contrast" aria-pressed="false">High contrast</button>
+    <button class="btn btn--ghost" id="btn-demo" hidden>Next demo state</button>
+  </div>
+</header>
+
+<section class="intro" id="intro" aria-labelledby="intro-title">
+  <p class="intro__kicker">NASA Space Apps Challenge</p>
+  <h1 class="intro__title" id="intro-title">Keep the outpost alive.</h1>
+  <p class="intro__sub">Mars gives you dust, radiation and cold nights. You give it air, power and food. Every fix costs something somewhere else.</p>
+
+  <details class="howto">
+    <summary>How to play</summary>
+    <ol class="howto__list">
+      <li>Each day and each night you get a few <strong>action points</strong>. Spend them to <strong>repair</strong>, <strong>upgrade</strong>, <strong>research</strong> or <strong>allocate</strong> power.</li>
+      <li>Then <strong>end the turn</strong>. Mars responds with real-data weather: dust storms cut solar power, radiation wears the shield, equipment breaks.</li>
+      <li>You cannot fix everything. Watch the <strong>outlook</strong>, choose what matters most, and keep air, power, food and shield above the mission goals until the relief ship arrives.</li>
+    </ol>
+  </details>
+
+  <fieldset class="choice intro__levels">
+    <legend>Choose your mission</legend>
+    <div class="intro__levellist" id="level-list"></div>
+  </fieldset>
+  <p class="intro__desc" id="level-desc" aria-live="polite"></p>
+
+  <button class="btn btn--primary intro__cta" id="btn-start" disabled>Loading mission data…</button>
+  <p class="intro__desc intro__desc--warn" id="boot-note" role="status" hidden>Still loading? Browsers block ES modules on <code>file://</code> pages. Run <code>npm start</code> (or <code>python3 -m http.server</code>) in the project folder and open <code>http://localhost:8000</code>, or use the GitHub Pages link.</p>
+  <noscript><p class="intro__desc intro__desc--warn">This game needs JavaScript enabled.</p></noscript>
+</section>
+
+<main class="game" id="game" hidden>
+  <h1 class="sr-only">Outpost dashboard</h1>
+  <section class="statusbar" aria-label="Mission status">
+    <p class="statusbar__item">Sol <strong><span data-value="day">–</span>/<span data-value="solLimit">–</span></strong></p>
+    <p class="statusbar__item">Phase <strong data-value="phase">–</strong></p>
+    <p class="statusbar__item">Action points <strong data-value="actionPoints">–</strong></p>
+    <p class="statusbar__item">Dust <strong data-value="dust">–</strong></p>
+    <p class="statusbar__item">Outlook <strong data-value="outlook" data-level="ok">–</strong></p>
+    <p class="statusbar__item">Relief ship <strong data-value="eta">–</strong></p>
+    <p class="statusbar__item">Score <strong data-value="score">–</strong></p>
+  </section>
+
+
+  <section class="scene" id="scene" aria-label="Outpost scene. Click a building to target it." data-rad="lo">
+    <svg viewBox="0 0 900 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Animated Mars outpost">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0b2b" stop-opacity="0"/><stop offset=".75" stop-color="#c1664a" stop-opacity=".45"/><stop offset="1" stop-color="#ff9d6b" stop-opacity=".7"/></linearGradient>
+        <linearGradient id="gnd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5573f"/><stop offset="1" stop-color="#5a2418"/></linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="900" height="360" fill="url(#sky)"/>
+      <rect id="night" width="900" height="360" fill="#03031a" opacity="0"/>
+      <circle id="sun" cx="150" cy="90" r="26" fill="#ffe2a8" filter="url(#glow)"/>
+      <g id="moon" style="opacity:0;transform:translateY(-160px)"><circle cx="740" cy="70" r="16" fill="#e9ecff"/><circle cx="734" cy="66" r="4" fill="#c5c9ea"/></g>
+      <path d="M0 292 Q120 262 260 286 T520 280 T760 290 T900 276 V360 H0Z" fill="#8f3f2c" opacity=".7"/>
+      <path d="M0 290 H900 V360 H0Z" fill="url(#gnd)"/>
+      <ellipse id="bubble" cx="450" cy="290" rx="430" ry="205" fill="none" stroke="#c9a8ff" stroke-width="3" stroke-dasharray="14 10"/>
+      <g id="rocket"><path class="flame" id="flame" d="M-7 0Q0 40 7 0Z" fill="#ffab5e" filter="url(#glow)"/><path d="M0-84C15-66 15-30 12 0H-12C-15-30-15-66 0-84Z" fill="#eef0ff" stroke="#b8bde8"/><path d="M-12-20L-25 4L-12-2ZM12-20L25 4L12-2Z" fill="#ff8a96"/><circle cx="0" cy="-54" r="6" fill="#7fd6ff" stroke="#2c3178"/><rect x="-12" y="-30" width="24" height="5" fill="#ff8a96"/></g>
+      <g transform="translate(150 286)"><g class="bld" data-target="power" tabindex="0" role="button" aria-label="Select Power"><g class="pop"><rect class="hit" x="-80" y="-90" width="160" height="96"/><rect x="-3" y="-20" width="6" height="20" fill="#8b90c8"/><g transform="skewX(-10)"><rect x="-70" y="-58" width="60" height="34" rx="3" fill="#274690" stroke="#8fb0ff"/><rect x="8" y="-58" width="60" height="34" rx="3" fill="#274690" stroke="#8fb0ff"/><rect id="pdust" x="-70" y="-58" width="138" height="34" rx="3" fill="#c1664a" opacity="0"/></g><rect x="30" y="-24" width="44" height="24" rx="4" fill="#3a3f8f" stroke="#ffd166"/><circle class="lamp" cx="52" cy="-12" r="4" fill="#ffd166"/></g><text class="bld__name" y="22">Power</text><text class="bld__val" y="40" data-value="power">–</text></g></g><g transform="translate(340 286)"><g class="bld" data-target="lifeSupport" tabindex="0" role="button" aria-label="Select Life support"><g class="pop"><rect class="hit" x="-40" y="-100" width="80" height="106"/><rect x="-18" y="-76" width="36" height="76" rx="8" fill="#2c3178" stroke="#7fd6ff"/><rect x="-26" y="-40" width="52" height="40" rx="6" fill="#3a3f8f" stroke="#7fd6ff"/><line x1="0" y1="-76" x2="0" y2="-98" stroke="#b8bde8" stroke-width="2"/><circle class="lamp" cx="0" cy="-100" r="4" fill="#7fd6ff"/><circle class="lamp" cx="0" cy="-58" r="5" fill="#7fd6ff"/></g><text class="bld__name" y="22">Life support</text><text class="bld__val" y="40" data-value="lifeSupport">–</text></g></g><g transform="translate(560 286)"><g class="bld" data-target="food" tabindex="0" role="button" aria-label="Select Greenhouse"><g class="pop"><rect class="hit" x="-64" y="-64" width="128" height="70"/><path d="M-56 0A56 52 0 0 1 56 0Z" fill="rgba(95,227,180,.22)" stroke="#5fe3b4" stroke-width="2"/><g class="plant"><path d="M-22 0V-18" stroke="#5fe3b4" stroke-width="3"/><ellipse cx="-22" cy="-22" rx="7" ry="10" fill="#5fe3b4"/></g><g class="plant"><path d="M0 0V-26" stroke="#5fe3b4" stroke-width="3"/><ellipse cx="0" cy="-32" rx="8" ry="12" fill="#8bf0c8"/></g><g class="plant"><path d="M22 0V-16" stroke="#5fe3b4" stroke-width="3"/><ellipse cx="22" cy="-20" rx="7" ry="9" fill="#5fe3b4"/></g><circle class="lamp" cx="44" cy="-8" r="3" fill="#5fe3b4"/></g><text class="bld__name" y="22">Greenhouse</text><text class="bld__val" y="40" data-value="food">–</text></g></g><g transform="translate(760 286)"><g class="bld" data-target="shield" tabindex="0" role="button" aria-label="Select Shield"><g class="pop"><rect class="hit" x="-44" y="-100" width="88" height="106"/><rect x="-22" y="-30" width="44" height="30" rx="5" fill="#3a3f8f" stroke="#c9a8ff"/><rect x="-5" y="-70" width="10" height="42" fill="#8b90c8"/><ellipse class="ring" cx="0" cy="-78" rx="34" ry="11" fill="none" stroke="#c9a8ff" stroke-width="3"/><circle class="lamp" cx="0" cy="-78" r="5" fill="#c9a8ff"/></g><text class="bld__name" y="22">Shield</text><text class="bld__val" y="40" data-value="shield">–</text></g></g>
+      <g id="astro"><ellipse cy="4" rx="12" ry="3" fill="#000" opacity=".3"/><rect x="-9" y="-26" width="18" height="24" rx="6" fill="#f0f2ff"/><rect x="-13" y="-24" width="7" height="16" rx="3" fill="#b8bde8"/><rect x="-8" y="-4" width="6" height="6" fill="#ffab5e"/><rect x="2" y="-4" width="6" height="6" fill="#ffab5e"/><g class="helmet"><circle cy="-36" r="11" fill="#f0f2ff"/><path d="M-1-42a7 6 0 1 1 0 12a7 6 0 0 1 0-12Z" fill="#2c3178"/><ellipse cx="3" cy="-39" rx="3" ry="2" fill="#7fd6ff" opacity=".8"/></g></g>
+      <g id="dust"></g>
+      <g id="fx"></g>
+    </svg>
+    <p class="scene__hint">Click a building to target it, pick an action, then commit.</p>
+  </section>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="h-life"><h2 class="panel__title" id="h-life">Life support (oxygen)</h2>
+      <div class="meter" data-stat="lifeSupport" role="meter" aria-labelledby="h-life" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter__fill"></div></div>
+      <p class="panel__value" data-value="lifeSupport">–</p>
+      <p class="panel__sub" data-value="sub-lifeSupport"></p></section>
+    <section class="panel" aria-labelledby="h-rad"><h2 class="panel__title" id="h-rad">Radiation dose (lower is safer)</h2>
+      <div class="meter" data-stat="radiation" role="meter" aria-labelledby="h-rad" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter__fill"></div></div>
+      <p class="panel__value" data-value="radiation">–</p>
+      <p class="panel__sub" data-value="sub-radiation"></p></section>
+    <section class="panel" aria-labelledby="h-pow"><h2 class="panel__title" id="h-pow">Power (battery)</h2>
+      <div class="meter" data-stat="power" role="meter" aria-labelledby="h-pow" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter__fill"></div></div>
+      <p class="panel__value" data-value="power">–</p>
+      <p class="panel__sub" data-value="sub-power"></p></section>
+    <section class="panel" aria-labelledby="h-food"><h2 class="panel__title" id="h-food">Food (greenhouse)</h2>
+      <div class="meter" data-stat="food" role="meter" aria-labelledby="h-food" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter__fill"></div></div>
+      <p class="panel__value" data-value="food">–</p>
+      <p class="panel__sub" data-value="sub-food"></p></section>
+    <section class="panel" aria-labelledby="h-sh"><h2 class="panel__title" id="h-sh">Shield integrity</h2>
+      <div class="meter" data-stat="shield" role="meter" aria-labelledby="h-sh" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter__fill"></div></div>
+      <p class="panel__value" data-value="shield">–</p>
+      <p class="panel__sub" data-value="sub-shield"></p></section>
+    <section class="panel panel--events" id="panel-events" aria-labelledby="h-ev"><h2 class="panel__title" id="h-ev">Events</h2>
+      <ul class="events" id="events" role="log" aria-live="polite"><li class="event">Waiting for mission data.</li></ul></section>
+  </div>
+
+  <section class="panel puzzle" aria-labelledby="h-puz">
+    <h2 class="panel__title" id="h-puz">Spend your action points</h2>
+    <p class="puzzle__hint">Pick an action and a target, then commit. Arrow keys move between options.</p>
+    <fieldset class="choice"><legend>Action</legend>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="type" value="repair" checked><span class="choice__label">Repair <small>1 AP</small></span></label>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="type" value="upgrade"><span class="choice__label">Upgrade <small>2 AP</small></span></label>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="type" value="research"><span class="choice__label">Research <small>1 AP</small></span></label>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="type" value="allocate"><span class="choice__label">Allocate <small>1 AP</small></span></label>
+    </fieldset>
+    <fieldset class="choice"><legend>Target</legend>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="target" value="lifeSupport"><span class="choice__label">Life support</span></label>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="target" value="power" checked><span class="choice__label">Power</span></label>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="target" value="food"><span class="choice__label">Food</span></label>
+      <label class="choice__opt"><input class="choice__input" type="radio" name="target" value="shield"><span class="choice__label">Shield</span></label>
+    </fieldset>
+    <p class="hint" id="action-hint" aria-live="polite"></p>
+    <div class="puzzle__actions">
+      <button class="btn btn--primary" id="btn-commit">Commit action</button>
+      <button class="btn btn--ghost" id="btn-end">End turn</button>
+    </div>
+  </section>
+</main>
+
+<div class="end" id="end" hidden role="dialog" aria-modal="true" aria-labelledby="end-title">
+  <div class="end__card panel">
+    <p class="end__badge" id="end-badge"></p>
+    <h2 class="end__title" id="end-title" tabindex="-1"></h2>
+    <p id="end-text"></p>
+    <p class="end__lesson"><strong>The trade-off:</strong> <span id="end-lesson"></span></p>
+    <dl class="end__stats">
+      <div><dt>Score</dt><dd id="end-score">–</dd></div>
+      <div><dt>Sols</dt><dd id="end-sols">–</dd></div>
+      <div><dt>Seed</dt><dd id="end-seed">–</dd></div>
+    </dl>
+    <div class="puzzle__actions">
+      <button class="btn btn--primary" id="btn-again">Play again</button>
+      <button class="btn btn--ghost" id="btn-next" hidden>Next mission</button>
+      <button class="btn btn--ghost" id="btn-choose">Choose mission</button>
+    </div>
+  </div>
+</div>
+
+<p class="sr-only" id="sr-status" role="status" aria-live="polite"></p>
+
+<footer class="footer">
+  <div>
+    <p>Built for the NASA Space Apps Challenge. The weather model uses the data formats and unit conversions of Perseverance's MEDA weather station and the Mars Climate Sounder on MRO. This game is not a NASA product.</p>
+    <p id="data-status" class="footer__data"></p>
+  </div>
+  <button class="btn btn--ghost" id="btn-data" aria-pressed="false">Data view: Simplified</button>
+</footer>
+
+<script>
+  // Classic script: still runs when ES modules are blocked (file:// pages).
+  setTimeout(function () {
+    if (!window.__MARS_BOOTED) document.getElementById('boot-note').hidden = false;
+  }, 3000);
+</script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

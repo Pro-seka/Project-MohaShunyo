@@ -1,0 +1,36 @@
+{
+  "id": "level-1",
+  "name": "First Sol",
+  "description": "Tutorial. Calm weather, no equipment faults. Learn how power, air, food and shielding depend on each other.",
+  "starterResources": {
+    "power": 100,
+    "oxygen": 100,
+    "food": 80,
+    "shield": 100
+  },
+  "envProfile": "calm",
+  "actionPoints": 3,
+  "turnLimit": 20,
+  "hazards": {
+    "faultChance": 0,
+    "flareChance": 0,
+    "leakScale": 0.3,
+    "escalation": 0,
+    "cascade": false
+  },
+  "winConditions": {
+    "minOxygen": 25,
+    "minFood": 25,
+    "minPower": 15,
+    "minShield": 30,
+    "maxRadiation": 70
+  },
+  "excellence": {
+    "minOxygen": 60,
+    "minFood": 50,
+    "minPower": 50,
+    "minShield": 60,
+    "maxRadiation": 30,
+    "minUpgrades": 2
+  }
+}
