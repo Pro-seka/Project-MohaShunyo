@@ -1,0 +1,16 @@
+{
+  "name": "mars_demo_2026",
+  "image": "assets/images/surface_mars_1920x1080.jpg",
+  "background_layers": [
+    "assets/images/nebula_layer_01.png",
+    "assets/images/starfield_tile.png"
+  ],
+  "solarFlux": 585.9,
+  "radiationIndex": 3.4,
+  "dustIndex": 0.4,
+  "tempRange": {
+    "minC": -96.8,
+    "maxC": -12.8
+  },
+  "notes": "source: NASA POWER / InSight - normalized for demo"
+}
