@@ -25,7 +25,7 @@ node data/test_ingest.js                 # offline checks, prints envData per so
 npm i express                            # only needed for the mock server
 node data/test_ingest.js --with-server   # + live-path test against the mock server
 node data/src/nasaMockServer.js          # http://localhost:8787
-node data/src/convert/selftest_convert.js  # converter / PDS-path logic test
+node data/src/convert/selftest_convert.js  # csv / MEDA-join / MCS-reducer logic test
 ```
 
 ```js
@@ -96,7 +96,7 @@ MCS is an orbital sounder, not a forecast product. For a `date` after the last o
 
 - `data/cache/*-latest.json` (converter output) overrides `*-sample.json`. Commit samples; don't commit real bulk downloads.
 - **Mock server:** `node data/src/nasaMockServer.js [--port 8787]` serves `GET /api/meda/latest[?date=]` and `GET /api/mcs/:date` (`latest` or `YYYY-MM-DD`, `?forecastDays=N` up to 30) from cache with `Access-Control-Allow-Origin: *`. Response: `{ source, record, units, envData, forecast?, synthetic, snapshotFile }`.
-- **API key:** none of the default paths use `api.nasa.gov`. If you add an `api.nasa.gov` endpoint: get a free key at https://api.nasa.gov, put `NASA_API_KEY=...` in a git-ignored `.env`, and run `node --env-file=.env …`. `fetchWithBackoff` appends it for that host only and never logs it. `DEMO_KEY` is heavily rate-limited (429 → backoff). `data/.gitignore` ignores `.env`; also add `.env` to the repo root `.gitignore`.
+- **API key:** none of the default paths use `api.nasa.gov`. If you add an `api.nasa.gov` endpoint: get a free key at https://api.nasa.gov, put `NASA_API_KEY=...` in a git-ignored `.env`, and run `node --env-file=.env …`. `fetchWithBackoff` appends it for that host only and never logs it. `DEMO_KEY` is heavily rate-limited (429 → backoff). The repo-root `.gitignore` ignores `.env`.
 
 ## 6. Source list (URLs and exact fields)
 
@@ -129,7 +129,7 @@ MCS is an orbital sounder, not a forecast product. For a `date` after the last o
    ```
    If the tables have no UTC column, pass `--anchor-utc/--anchor-sol/--anchor-lmst`; otherwise `utc` stays null (timestamp null in envData). The live PDS path approximates UTC from sol + LMST (landing at ~15 h LMST assumed, ±1 h) and marks `utc_approx: true`.
 2. **MCS DDR → flat CSV.** Write (Node or Python) a step that expands DDR profile files into `profile_id,utc,ls,lat,lon,ltst,p_pa,z_km,t_k,dust_ext_km1,tsurf_k,pqual`, then run `mcs_to_json.js --in profiles.csv --out data/cache/mcs-latest.json`. Build `climatology[]` from ≥1 Mars year of daily output (10° Ls bins, same keys as the sample) or leave empty (forecast then falls back to persistence).
-3. **Replace synthetic samples**, or delete the `*-sample.json` files once `*-latest.json` exist. `node data/src/convert/make_synthetic_samples.js` regenerates the placeholders.
+3. **Replace synthetic samples**, or delete the `*-sample.json` files once `*-latest.json` exist. (`make_synthetic_samples.js`, mentioned in earlier drafts of this README, was not part of the delivered package; the committed samples are used as-is.)
 4. MCS `temperature`/`pressure` are proxies (orbital, dayside, above-surface + extrapolation); MEDA is preferred whenever available.
 
 ## 8. Files
@@ -138,13 +138,12 @@ MCS is an orbital sounder, not a forecast product. For a `date` after the last o
 data/
   src/nasaData.js            fetchLatest(), normalize()  (only two exports)
   src/nasaMockServer.js      Express server (CORS)
-  src/convert/csv.js         zero-dependency CSV parser
+  src/convert/csv.js         zero-dependency CSV parser (re-implemented during the merge)
   src/convert/columns.js     column candidates, file tags, LMST/sol helpers   <- edit after inspecting real files
-  src/convert/meda_records.js  join MEDA tables -> hourly records (shared by converter + live path)
+  src/convert/meda_records.js  join MEDA tables -> hourly records (re-implemented during the merge)
   src/convert/meda_to_json.js  Option B converter (MEDA)
   src/convert/mcs_to_json.js   Option B converter (MCS)
-  src/convert/make_synthetic_samples.js  deterministic synthetic placeholders
-  src/convert/selftest_convert.js  converter + PDS-path logic test (fake files)
+  src/convert/selftest_convert.js  csv / meda_records / mcs reducer logic test (in-memory fixtures)
   cache/meda-sample.json, cache/mcs-sample.json   SYNTHETIC
-  test_ingest.js, README_DATA.md, .gitignore
+  test_ingest.js, README_DATA.md   (.env is ignored by the repo-root .gitignore)
 ```

@@ -1,0 +1,36 @@
+{
+  "id": "level-2",
+  "name": "Storm Season",
+  "description": "Unstable environment. Dust storms choke your solar panels and equipment starts to fail. Balance repairs against long-term upgrades.",
+  "starterResources": {
+    "power": 80,
+    "oxygen": 85,
+    "food": 70,
+    "shield": 90
+  },
+  "envProfile": "unstable",
+  "actionPoints": 3,
+  "turnLimit": 30,
+  "hazards": {
+    "faultChance": 0.1,
+    "flareChance": 0.05,
+    "leakScale": 1,
+    "escalation": 0.01,
+    "cascade": false
+  },
+  "winConditions": {
+    "minOxygen": 25,
+    "minFood": 25,
+    "minPower": 20,
+    "minShield": 35,
+    "maxRadiation": 65
+  },
+  "excellence": {
+    "minOxygen": 55,
+    "minFood": 45,
+    "minPower": 45,
+    "minShield": 55,
+    "maxRadiation": 35,
+    "minUpgrades": 4
+  }
+}
