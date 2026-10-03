@@ -1,0 +1,47 @@
+[
+  {
+    "filename": "assets/images/nebula_layer_01.png",
+    "source": "placeholder",
+    "credit": "Procedurally generated placeholder (not a NASA image)",
+    "license": "CC0 (generated; no third-party content)",
+    "original_url": null,
+    "title": "nebula overlay",
+    "status": "final - generated asset (transparent overlay, stays generated)"
+  },
+  {
+    "filename": "assets/images/starfield_tile.png",
+    "source": "placeholder",
+    "credit": "Procedurally generated placeholder (not a NASA image)",
+    "license": "CC0 (generated; no third-party content)",
+    "original_url": null,
+    "title": "tileable starfield",
+    "status": "final - generated asset (transparent overlay, stays generated)"
+  },
+  {
+    "filename": "assets/images/hero_nebula_3840x2160.jpg",
+    "source": "NASA",
+    "credit": "NASA/JPL",
+    "license": "public domain (NASA media usage guidelines; check the item page for exceptions)",
+    "original_url": "https://images.nasa.gov/details/PIA15658",
+    "title": "NGC 7293, the Helix Nebula",
+    "status": "nasa"
+  },
+  {
+    "filename": "assets/images/surface_mars_1920x1080.jpg",
+    "source": "NASA",
+    "credit": "NASA/JPL",
+    "license": "public domain (NASA media usage guidelines; check the item page for exceptions)",
+    "original_url": "https://images.nasa.gov/details/PIA00782",
+    "title": "360-degree Panorama in 3-D",
+    "status": "nasa"
+  },
+  {
+    "filename": "assets/images/surface_moon_1920x1080.jpg",
+    "source": "NASA",
+    "credit": "NASA/JSC",
+    "license": "public domain (NASA media usage guidelines; check the item page for exceptions)",
+    "original_url": "https://images.nasa.gov/details/as8-14-2392",
+    "title": "High-oblique view of Moon's surface showing earth rising above horizon",
+    "status": "nasa"
+  }
+]

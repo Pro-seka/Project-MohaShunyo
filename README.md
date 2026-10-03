@@ -1,88 +1,31 @@
-# Mars Outpost
+# Outpost Commander
 
-> **Every engineering decision has consequences.**
-> A browser game for the **NASA Space Apps Challenge**. You command a small Mars outpost. Dust storms cut your solar power, radiation wears down the shield, equipment breaks, and you only have a few action points each turn. Fixing one problem always costs you somewhere else.
+A browser game for the NASA Space Apps Challenge. You command a four-person outpost on Mars or the Moon and balance power, oxygen, food, shielding, morale and habitat health. Every fix costs something somewhere else.
 
-No build step, no framework, no backend. Plain HTML, CSS and ES modules.
+## Run it
 
-## Play
+Open `index.html` in any modern browser. Nothing to install or build. It needs an internet connection for the anime.js script; fonts load from the local `fonts/` folder, so keep it next to `index.html`. For a local server instead: `python3 -m http.server`, then open http://localhost:8000.
 
-**Online:** enable GitHub Pages for this repo (Settings → Pages → *Deploy from a branch* → `main` / `/ (root)`), then open the Pages URL.
+## Publish on GitHub Pages
 
-**Locally** (browsers block ES modules on `file://`, so use a server):
-
-```bash
-npm start                      # http://localhost:8000   (no dependencies needed for this)
-# or, without Node:
-python3 -m http.server 8000
-```
-
-Handy URL options: `?level=2` preselects a mission, `?seed=42` makes a run repeatable (same seed and same choices give the same game), `?demo=1` adds a UI demo button.
+1. Push this folder to a GitHub repository.
+2. Repository Settings, Pages, deploy from the `main` branch root.
+3. The game is live at `https://<user>.github.io/<repo>/`.
 
 ## How to play
 
-1. Pick a mission (3 levels: *First Sol*, *Storm Season*, *The Long Haul*).
-2. Each day and night you get **action points**. Spend them to **repair**, **upgrade**, **research** or **allocate** power to one of four systems: Power, Life support, Radiation shield, Greenhouse.
-3. **End the turn.** Mars responds with weather derived from NASA data formats: dust, wind, cold, pressure and radiation.
-4. Watch the **Outlook** in the status bar: it warns you a couple of sols before a storm. Survive until the relief ship arrives with every meter above the mission goals.
+Tap objects on the base: solar array cleans, rover drives, dome shelters the crew, greenhouse rations food, astronaut repairs, generator burns fuel, berm adds shielding, tank toggles eco life support. The same actions are on the button dock. Space pauses. Speed is 1x, 2x or 4x. Sounds are synthesized in the browser (no audio files): every action, tab, speed change and event has its own cue. Toggle with the speaker button or the M key. Survive the whole mission (72 h Cadet, 96 h Commander). A run seed is shown in the Mission tab, and the same seed replays the same events.
 
-The point: you can't optimise everything. Upgrades draw more power. Research spends battery. Repairing panels means not repairing the shield. The end screen tells you which trade-off got you.
+## What is where
 
-## Project layout
+- `index.html` is the whole game: interface, scene, animation and the simulation engine embedded in it. Edit this file to change the game.
+- `engine/` holds the original `simEngine.js` and `gameState.js` for reference. They are embedded unchanged in `index.html`. The balance numbers are `TUNING`, `SHORT_MISSION_TUNING` and `PRESETS` there.
+- `nasa-data-layer/` fetches and caches NASA data (InSight weather, NASA POWER solar data, NASA Image and Video Library metadata). Add your own key in a local `.env` (see `.env.example`); do not commit it.
+- `data/` and `docs/` are the original team data and briefs.
 
-```
-mars-outpost/
-├── index.html              page shell (intro, dashboard, end-of-mission dialog)
-├── styles/                 main.css (design tokens, layout), animations.css
-├── src/                    the browser app
-│   ├── main.js             entry point: wires UI <-> session <-> data
-│   ├── session.js          turn flow, event log, view models (no DOM, unit-tested)
-│   ├── env-feed.js         NASA snapshots -> one envData object per day/night phase
-│   ├── scenarios.js        scripted storm calendar for missions 2 and 3
-│   ├── ui.js               all DOM rendering and animation
-│   └── vendor/             anime.js 4.5.0 (MIT), vendored so the game works offline
-├── game/                   game engine (pure JS, no DOM, no network)
-│   ├── src/game-logic.js   rules, equations, scoring, win/loss
-│   ├── src/levels/         level-1..3.json
-│   ├── tests/run-tests.js  49 engine tests + decision-sequence traces
-│   ├── design/             design spec, balancing report, narrative bible
-│   └── README_GAME.md
-├── data/                   NASA data pipeline
-│   ├── src/nasaData.js     fetchLatest(), normalize()
-│   ├── src/convert/        CSV parser, MEDA/MCS converters, column mapping
-│   ├── src/nasaMockServer.js  optional local API (needs express)
-│   ├── cache/              meda-sample.json, mcs-sample.json  (SYNTHETIC, see below)
-│   └── README_DATA.md
-├── tests/                  glue-layer and UI tests, plus run-all.js
-├── docs/                   ARCHITECTURE.md, UI.md
-└── scripts/serve.js        zero-dependency static server (npm start)
-```
+## Credits
 
-## Tests
-
-```bash
-npm install     # only needed for the UI test (jsdom) and the mock server (express)
-npm test        # runs all five suites
-```
-
-| Suite | What it checks |
-|---|---|
-| `game/tests/run-tests.js` | rules, multipliers, determinism, all three levels winnable and losable |
-| `data/test_ingest.js` | NASA normalisation, units, provenance flags, retry/backoff (add `-- --with-server` via `npm run test:data -- --with-server` to also test the mock server) |
-| `data/src/convert/selftest_convert.js` | CSV parser, MEDA table joiner, MCS profile reducer |
-| `tests/session.test.js` | data feed, storm calendar, turn flow, autopilot playthroughs of every level with several seeds |
-| `tests/ui.test.js` | the real `index.html` + `main.js` + `ui.js` driven in a headless DOM |
-
-## About the data (please read)
-
-- **The bundled snapshots are synthetic placeholders.** `data/cache/*-sample.json` are marked `"synthetic": true`: they have the exact schema and plausible magnitudes of Perseverance **MEDA** and MRO **Mars Climate Sounder** data, but they are **not NASA measurements**. The UI footer says so, and every derived field carries `synthetic` / `proxy` flags.
-- **What is real:** the instrument-to-field mapping, unit conversions and dust-opacity formula (documented with sources in `data/README_DATA.md`), and the radiation baseline from MSL/RAD (Hassler et al. 2014), which is used as a constant *proxy* because MEDA has no dose sensor.
-- **Storm calendar:** the sample data is calm, so missions 2 and 3 add a scripted storm calendar (`src/scenarios.js`) that only ever *raises* dust/wind and lowers temperature during "cold snaps". Overlaid fields are flagged `scenario: true`.
-- **Using real data:** download MEDA/MCS files, run the converters in `data/src/convert/` (steps in `data/README_DATA.md` §7). They write `data/cache/*-latest.json`, which the game prefers over the samples automatically. The MEDA column names in `columns.js` are unverified guesses: check them with `--inspect` first.
-
-## Credits and licence
-
-- Game design, engine, UI and data pipeline: the Mars Outpost team.
-- [anime.js](https://animejs.com) 4.5.0 by Julian Garnier, MIT licence (`src/vendor/anime.LICENSE.md`).
-- Data sources and references are listed in `data/README_DATA.md`. This project is not a NASA product and is not endorsed by NASA.
-- Project code: MIT (see `LICENSE`; change it if your team prefers another licence).
+- Environment numbers: NASA InSight (TWINS) weather, NASA POWER solar data, NASA reference values for the Moon.
+- NASA Image and Video Library, https://images.nasa.gov. NASA/JPL credited as the source.
+- Simulation engine and data layer: Outpost Sim team. Animation: anime.js (MIT). Font: Montserrat (SIL OFL). Icons: Phosphor Icons (MIT), inlined. Scenery, rover, rocket and astronaut: original, drawn in code.
+- Not endorsed by NASA. The NASA insignia is not used.
