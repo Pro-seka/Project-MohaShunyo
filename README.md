@@ -1,6 +1,8 @@
 # Outpost Commander
 
 A browser game for the NASA Space Apps Challenge. You command a four-person outpost on Mars or the Moon and balance power, oxygen, food, shielding, morale and habitat health. Every fix costs something somewhere else.
+**[Check Here to Play Outpost Commander Directly](https://pro-seka.github.io/Project-MohaShunyo/)**
+
 
 ## Run it
 
