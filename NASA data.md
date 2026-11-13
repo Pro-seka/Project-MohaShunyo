@@ -1,5 +1,3 @@
-# Used NASA data
-
 ### NASA data
 
 | # | Dataset name | Link | How you used it (one line) |
