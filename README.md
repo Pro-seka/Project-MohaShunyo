@@ -5,6 +5,7 @@ A browser game for kids aged 7 to 12, built for the NASA Space Apps Challenge 20
 (*"Build a Lunar or Martian outpost"*: balance life support, power, shielding and food, where every fix costs something somewhere else).
 
 Play it: open `index.html` in any modern browser. No install, no account, no build step.
+
 Hosted version: https://pro-seka.github.io/Project-MohaShunyo/ 
 ## What you do
 Walk around a 3D base (WASD, arrow keys, or tap) and tap objects to run the outpost. Survive 72 hours (Cadet) or 96 hours (Commander). Same seed, same events: share a seed with a friend. A **coach tip** at the top always names the one thing that needs attention, so a new player never has to read eight bars at once.
