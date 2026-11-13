@@ -5,8 +5,7 @@ A browser game for kids aged 7 to 12, built for the NASA Space Apps Challenge 20
 (*"Build a Lunar or Martian outpost"*: balance life support, power, shielding and food, where every fix costs something somewhere else).
 
 Play it: open `index.html` in any modern browser. No install, no account, no build step.
-Hosted version: https://pro-seka.github.io/Project-MohaShunyo/ (GitHub Pages serves this folder's `index.html`; update the link if your repository name differs).
-
+Hosted version: https://pro-seka.github.io/Project-MohaShunyo/ 
 ## What you do
 Walk around a 3D base (WASD, arrow keys, or tap) and tap objects to run the outpost. Survive 72 hours (Cadet) or 96 hours (Commander). Same seed, same events: share a seed with a friend. A **coach tip** at the top always names the one thing that needs attention, so a new player never has to read eight bars at once.
 
@@ -27,14 +26,14 @@ Pick **which Sun to face**: today's real flares (NASA DONKI), the September 2017
 
 **Stars:** 1 for surviving, 1 for reaching the research goal, 1 for a well-run base (finish with battery, a sound habitat, a happy crew and a low dose). Doing nothing earns about 1 star at best.
 
-## Learning goals (what a child takes away)
+## Learning goals 
 1. A solar flare gives a **warning window**; the dangerous particles arrive hours later (real DONKI record: flare 18:09 UTC, particles 22:33 UTC on 18 Jan 2026).
 2. Some flares come from the **far side of the Sun** with no warning (Commander).
 3. **Power is life**: night, dust and storms cut sunlight, and the heater works harder in the cold.
 4. A message to Mars takes **3 to 22 minutes** (the game computes today's real value), so crews decide alone.
 5. Safety costs something: shelter protects the body but hurts morale and stops work.
 
-## The NASA data (what is real, what is not)
+## The NASA data 
 Every number is labelled **LIVE**, **ARCHIVE** or *game-scaled* inside the game (NASA tab). Full detail: [`docs/NASA_DATA.md`](docs/NASA_DATA.md).
 
 | NASA source | How the game uses it |
