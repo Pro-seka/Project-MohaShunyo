@@ -44,7 +44,7 @@ Verification done for this release: the X8.3 flare of 1 Feb 2026 from AR 4366 (s
 The game replays the strongest 2 (Cadet, 72 h) or 3 (Commander, 96 h) flares in real order at seeded hours.
 
 ## What is game-scaled (not NASA numbers)
-- Dose per flare: 8 / 35 / 100 mSv unshielded (minor / moderate / severe) and the 100 mSv mission limit. Real career limit discussion: a 2022 National Academies report recommended 600 mSv.
+- Dose per flare: 8 / 35 / 100 mSv unshielded (minor / moderate / severe) and the 100 mSv mission limit. Real career limit discussion: a June 2021 National Academies report (sponsored by NASA) recommended 600 mSv: https://www.nationalacademies.org/news/nasa-should-update-astronaut-radiation-exposure-limits-improve-communication-of-cancer-risks
 - Flare severity from class: below X2 minor, X2 to X7.9 moderate, X8 and above severe (Cadet caps at moderate).
 - Battery, oxygen, food and fuel capacities, shrunk so 72 hours is enough to feel pressure.
 - Dust-storm strength and length, panel area, efficiency, loads.

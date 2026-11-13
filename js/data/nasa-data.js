@@ -342,7 +342,7 @@ window.SOL72_NASA = {
    }
   ],
   "ct_comparison": "NASA's Cary Zeitlin: on the trip to Mars the dose adds up like a whole-body CT scan every five or six days.",
-  "career_limit": "A 2022 National Academies report recommended a 600 mSv career limit for NASA astronauts. The game's 100 mSv mission limit is scaled down so a 72-hour mission can show the danger."
+  "career_limit": "A June 2021 National Academies report recommended a 600 mSv career limit for NASA astronauts. The game's 100 mSv mission limit is scaled down so a 72-hour mission can show the danger."
  },
  "comms": {
   "moon_one_way_s": 1.28,
