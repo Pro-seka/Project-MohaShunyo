@@ -1,4 +1,4 @@
-# Sol 72 - Data used
+# Used NASA data
 
 ### NASA data
 
