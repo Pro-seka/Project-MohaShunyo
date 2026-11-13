@@ -15,3 +15,5 @@ Merged from two submitted builds, "Sol72" (A) and "Sol72-NASA-Space-Apps" (B), a
 - Moon text corrected (the old menu promised "long nights" that never happened); the Moon mission now starts in lunar afternoon so power tightens late.
 - Menu: the Launch button is always visible (sticky); the scenario row fits.
 - Project cleanup: team pipeline moved to `tools/` (with a note that its sample caches are synthetic), documents rewritten, tests rewritten and extended.
+
+**Submission pass:** Mars sunlight corrected to NASA's Mars Fact Sheet value (586.2 W/m2, was 585.9); the sunlight and Moon temperature constants now live in `js/data/nasa-data.js` (`constants`, each with its NASA source link); the in-game NASA tab lists all 16 data sources in the same order as the submission form.

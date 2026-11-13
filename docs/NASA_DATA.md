@@ -9,6 +9,8 @@ Honesty rule: a value is called **LIVE** only when the browser really fetched it
 | NASA DONKI particle events (SEP) | Archive: one linked example; LIVE count if reachable | Why the warning window exists | DONKI FLR 2026-01-18T17:27:00-FLR-001 |
 | Famous storms (2017, 2024, 2003) | Archive (`js/data/storms.js`): flare class, peak time, region | "Which Sun do you face?" replays | NOAA SWPC / NASA DONKI records; verify any row in DONKI by date |
 | NASA InSight weather (sols 675 to 681) | Archive (feed frozen since the mission ended in 2022) | Per-sol temperature range (drives heater), pressure, wind, real sol label | `api.nasa.gov/insight_weather` (cached under `tools/nasa-data-layer/data/cached/`) |
+| NASA Mars Fact Sheet (NSSDCA) | Published constant | Sunlight on Mars: solar irradiance 586.2 W/m2 (Earth 1361.0) sets the panel output before dust | https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html |
+| NASA Moon Facts | Published constant | Moon surface temperature range -173 to 127 C drives the Moon heater load; solar constant 1361 W/m2 | https://science.nasa.gov/moon/facts |
 | NASA/JPL planetary elements | **Computed** in the browser (`js/orbits.js`), accurate to a few percent | Today's Earth-Mars radio delay (3 to 22 min range) | https://ssd.jpl.nasa.gov/planets/approx_pos.html |
 | NASA POWER (ALLSKY_SFC_SW_DWN, 0N 0E, 11 to 24 Sep 2026) | Archive; optional LIVE (14 days) | Earth vs your panels solar comparison | https://power.larc.nasa.gov/ |
 | Curiosity RAD | Published constants | Mars background dose 0.64 mSv/day (Hassler 2014); cruise 1.8 mSv/day (Zeitlin 2013) | doi 10.1126/science.1244797 |

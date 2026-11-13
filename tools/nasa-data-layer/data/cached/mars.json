@@ -1,0 +1,365 @@
+{
+  "meta": {
+    "schema": 2,
+    "body": "mars",
+    "origin": "live",
+    "generatedAt": "2026-10-01T16:52:17.270Z",
+    "range": {
+      "start": "2026-09-11",
+      "end": "2026-09-24"
+    },
+    "note": "Built from live NASA responses."
+  },
+  "simInputs": {
+    "body": "mars",
+    "solarFlux": 585.9,
+    "radiationIndex": 3.4,
+    "dustIndex": 0.4,
+    "tempRange": {
+      "minC": -96.8,
+      "maxC": -12.8
+    }
+  },
+  "power": {
+    "reference": {
+      "lat": 0,
+      "lon": 0
+    },
+    "daily": [
+      {
+        "date": "2026-09-11",
+        "ghi_kWh_m2_day": 5.032,
+        "ghi_Wm2": 209.68,
+        "toa_Wm2": null,
+        "tMaxC": 24.23,
+        "tMinC": 23.5
+      },
+      {
+        "date": "2026-09-12",
+        "ghi_kWh_m2_day": 4.063,
+        "ghi_Wm2": 169.3,
+        "toa_Wm2": null,
+        "tMaxC": 24.15,
+        "tMinC": 23.13
+      },
+      {
+        "date": "2026-09-13",
+        "ghi_kWh_m2_day": 4.213,
+        "ghi_Wm2": 175.56,
+        "toa_Wm2": null,
+        "tMaxC": 24.52,
+        "tMinC": 23.48
+      },
+      {
+        "date": "2026-09-14",
+        "ghi_kWh_m2_day": 6.004,
+        "ghi_Wm2": 250.17,
+        "toa_Wm2": null,
+        "tMaxC": 24.51,
+        "tMinC": 24.02
+      },
+      {
+        "date": "2026-09-15",
+        "ghi_kWh_m2_day": 6.573,
+        "ghi_Wm2": 273.89,
+        "toa_Wm2": null,
+        "tMaxC": 24.58,
+        "tMinC": 23.87
+      },
+      {
+        "date": "2026-09-16",
+        "ghi_kWh_m2_day": 6.161,
+        "ghi_Wm2": 256.7,
+        "toa_Wm2": null,
+        "tMaxC": 24.94,
+        "tMinC": 24.12
+      },
+      {
+        "date": "2026-09-17",
+        "ghi_kWh_m2_day": 4.66,
+        "ghi_Wm2": 194.17,
+        "toa_Wm2": null,
+        "tMaxC": 24.65,
+        "tMinC": 24.02
+      },
+      {
+        "date": "2026-09-18",
+        "ghi_kWh_m2_day": 6.121,
+        "ghi_Wm2": 255.06,
+        "toa_Wm2": null,
+        "tMaxC": 24.42,
+        "tMinC": 23.75
+      },
+      {
+        "date": "2026-09-19",
+        "ghi_kWh_m2_day": 6.453,
+        "ghi_Wm2": 268.87,
+        "toa_Wm2": null,
+        "tMaxC": 24.75,
+        "tMinC": 23.8
+      },
+      {
+        "date": "2026-09-20",
+        "ghi_kWh_m2_day": 5.048,
+        "ghi_Wm2": 210.35,
+        "toa_Wm2": null,
+        "tMaxC": 25,
+        "tMinC": 23.75
+      },
+      {
+        "date": "2026-09-21",
+        "ghi_kWh_m2_day": 5.584,
+        "ghi_Wm2": 232.68,
+        "toa_Wm2": null,
+        "tMaxC": 24.36,
+        "tMinC": 23.81
+      },
+      {
+        "date": "2026-09-22",
+        "ghi_kWh_m2_day": 6.65,
+        "ghi_Wm2": 277.09,
+        "toa_Wm2": null,
+        "tMaxC": 24.94,
+        "tMinC": 23.96
+      },
+      {
+        "date": "2026-09-23",
+        "ghi_kWh_m2_day": 6.682,
+        "ghi_Wm2": 278.42,
+        "toa_Wm2": null,
+        "tMaxC": 25.07,
+        "tMinC": 24.34
+      },
+      {
+        "date": "2026-09-24",
+        "ghi_kWh_m2_day": 6.645,
+        "ghi_Wm2": 276.86,
+        "toa_Wm2": null,
+        "tMaxC": 25.14,
+        "tMinC": 24.4
+      }
+    ]
+  },
+  "weather": {
+    "station": "insight",
+    "daily": [
+      {
+        "sol": 675,
+        "date": "2020-10-19",
+        "season": "fall",
+        "tempC": {
+          "avg": -62.31,
+          "min": -96.87,
+          "max": -15.91,
+          "n": 177556
+        },
+        "pressurePa": {
+          "avg": 750.56,
+          "min": 722.09,
+          "max": 768.79,
+          "n": 887776
+        },
+        "windMs": {
+          "avg": 7.23,
+          "min": 1.05,
+          "max": 22.45,
+          "n": 88628
+        }
+      },
+      {
+        "sol": 676,
+        "date": "2020-10-20",
+        "season": "fall",
+        "tempC": {
+          "avg": -62.81,
+          "min": -96.91,
+          "max": -16.5,
+          "n": 177554
+        },
+        "pressurePa": {
+          "avg": 749.09,
+          "min": 722.47,
+          "max": 767.14,
+          "n": 887777
+        },
+        "windMs": {
+          "avg": 8.53,
+          "min": 1.11,
+          "max": 26.91,
+          "n": 88250
+        }
+      },
+      {
+        "sol": 677,
+        "date": "2020-10-21",
+        "season": "fall",
+        "tempC": {
+          "avg": -63.06,
+          "min": -97.25,
+          "max": -16.85,
+          "n": 177556
+        },
+        "pressurePa": {
+          "avg": 748.7,
+          "min": 720.59,
+          "max": 767.42,
+          "n": 887776
+        },
+        "windMs": {
+          "avg": 7.89,
+          "min": 0.51,
+          "max": 23.2,
+          "n": 88610
+        }
+      },
+      {
+        "sol": 678,
+        "date": "2020-10-22",
+        "season": "fall",
+        "tempC": {
+          "avg": -62.56,
+          "min": -97.73,
+          "max": -9.05,
+          "n": 177556
+        },
+        "pressurePa": {
+          "avg": 743.74,
+          "min": 717.73,
+          "max": 760.28,
+          "n": 887777
+        },
+        "windMs": {
+          "avg": 5.25,
+          "min": 0.24,
+          "max": 18.4,
+          "n": 86963
+        }
+      },
+      {
+        "sol": 679,
+        "date": "2020-10-23",
+        "season": "fall",
+        "tempC": {
+          "avg": -62.55,
+          "min": -96.64,
+          "max": -11.56,
+          "n": 177554
+        },
+        "pressurePa": {
+          "avg": 744.53,
+          "min": 719.42,
+          "max": 763.27,
+          "n": 887776
+        },
+        "windMs": {
+          "avg": 5.57,
+          "min": 0.23,
+          "max": 19.41,
+          "n": 87171
+        }
+      },
+      {
+        "sol": 680,
+        "date": "2020-10-24",
+        "season": "fall",
+        "tempC": {
+          "avg": -61.79,
+          "min": -96.81,
+          "max": -15.3,
+          "n": 168902
+        },
+        "pressurePa": {
+          "avg": 743.99,
+          "min": 717.14,
+          "max": 764.01,
+          "n": 887767
+        },
+        "windMs": {
+          "avg": 6.52,
+          "min": 0.28,
+          "max": 24.23,
+          "n": 88478
+        }
+      },
+      {
+        "sol": 681,
+        "date": "2020-10-25",
+        "season": "fall",
+        "tempC": {
+          "avg": -62.43,
+          "min": -95.45,
+          "max": -4.44,
+          "n": 88778
+        },
+        "pressurePa": {
+          "avg": 743.55,
+          "min": 718.46,
+          "max": 760.22,
+          "n": 887777
+        },
+        "windMs": {
+          "avg": 5.63,
+          "min": 0.23,
+          "max": 18.58,
+          "n": 87184
+        }
+      }
+    ]
+  },
+  "images": [
+    {
+      "id": "PIA05445",
+      "title": "Opportunity Slices into the Surface of Mars",
+      "description": "Opportunity Slices into the Surface of Mars",
+      "href": "https://images-assets.nasa.gov/image/PIA05445/PIA05445~small.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/PIA05445/PIA05445~small.jpg",
+      "credit": "NASA/JPL",
+      "dateCreated": "2004-02-25"
+    },
+    {
+      "id": "PIA10739",
+      "title": "Mars Surface Beneath Phoenix",
+      "description": "Mars Surface Beneath Phoenix",
+      "href": "https://images-assets.nasa.gov/image/PIA10739/PIA10739~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/PIA10739/PIA10739~thumb.jpg",
+      "credit": "NASA/JPL",
+      "dateCreated": "2008-05-30"
+    },
+    {
+      "id": "PIA11223",
+      "title": "Surface Stereo Imager on Mars, Face-On",
+      "description": "Surface Stereo Imager on Mars, Face-On",
+      "href": "https://images-assets.nasa.gov/image/PIA11223/PIA11223~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/PIA11223/PIA11223~thumb.jpg",
+      "credit": "NASA/JPL",
+      "dateCreated": "2008-10-03"
+    },
+    {
+      "id": "PIA03817",
+      "title": "Mars Surface Layers in Infrared",
+      "description": "This image from NASA Mars Odyssey spacecraft shows signs of layering exposed at the surface in a region of Mars called Terra Meridiani. The brightness levels show daytime surface temperatures.",
+      "href": "https://images-assets.nasa.gov/image/PIA03817/PIA03817~small.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/PIA03817/PIA03817~small.jpg",
+      "credit": "NASA/JPL",
+      "dateCreated": "2002-06-17"
+    },
+    {
+      "id": "PIA22228",
+      "title": "InSight on the Surface of Mars",
+      "description": "An artist's rendition of the InSight lander operating on the surface of Mars. InSight, short for Interior Exploration using Seismic Investigations, Geodesy and Heat Transport, is a lander designed to give Mars its first thorough check up si",
+      "href": "https://images-assets.nasa.gov/image/PIA22228/PIA22228~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/PIA22228/PIA22228~medium.jpg",
+      "credit": "NASA/JPL",
+      "dateCreated": "2018-01-25"
+    },
+    {
+      "id": "PIA03806",
+      "title": "Mars Surface Layers in Infrared",
+      "description": "Infrared imaging from NASA Mars Odyssey spacecraft shows signs of layering exposed at the surface in a region of Mars called Terra Meridiani.",
+      "href": "https://images-assets.nasa.gov/image/PIA03806/PIA03806~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/PIA03806/PIA03806~medium.jpg",
+      "credit": "NASA/JPL",
+      "dateCreated": "2002-05-29"
+    }
+  ]
+}

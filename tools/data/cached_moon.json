@@ -1,0 +1,16 @@
+{
+  "name": "moon_demo_2026",
+  "image": "assets/images/surface_moon_1920x1080.jpg",
+  "background_layers": [
+    "assets/images/nebula_layer_01.png",
+    "assets/images/starfield_tile.png"
+  ],
+  "solarFlux": 1361,
+  "radiationIndex": 6.9,
+  "dustIndex": 0.5,
+  "tempRange": {
+    "minC": -173,
+    "maxC": 127
+  },
+  "notes": "source: NASA POWER (top-of-atmosphere insolation) + published lunar constants - normalized for demo"
+}

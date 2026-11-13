@@ -1,0 +1,27 @@
+{
+  "name": "nasa-sim-data-layer",
+  "version": "1.0.0",
+  "description": "NASA data layer (POWER, Images, InSight) with caching proxy and offline snapshots for a Moon/Mars simulation",
+  "type": "module",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "start:offline": "OFFLINE=1 node server/index.js",
+    "snapshot:moon": "curl -s \"http://localhost:3001/api/snapshot/moon\"",
+    "snapshot:mars": "curl -s \"http://localhost:3001/api/snapshot/mars\"",
+    "normalize": "node server/normalize.js data/raw_mars.json --out ../data/cached_mars.json && node server/normalize.js data/raw_moon.json --out ../data/cached_moon.json",
+    "fetch-images": "node scripts/fetchImages.js",
+    "snapshot": "npm run snapshot:moon && npm run snapshot:mars",
+    "build-datajs": "node scripts/buildDataJs.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

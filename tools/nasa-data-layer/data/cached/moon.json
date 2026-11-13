@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "schema": 2,
+    "body": "moon",
+    "origin": "live",
+    "generatedAt": "2026-10-01T16:53:37.327Z",
+    "range": {
+      "start": "2026-09-11",
+      "end": "2026-09-24"
+    },
+    "note": "Built from live NASA responses."
+  },
+  "simInputs": {
+    "body": "moon",
+    "solarFlux": 1361,
+    "radiationIndex": 6.9,
+    "dustIndex": 0.5,
+    "tempRange": {
+      "minC": -173,
+      "maxC": 127
+    }
+  },
+  "power": {
+    "reference": {
+      "lat": 0,
+      "lon": 0
+    },
+    "daily": [
+      {
+        "date": "2026-09-11",
+        "ghi_kWh_m2_day": 5.032,
+        "ghi_Wm2": 209.68,
+        "toa_Wm2": null,
+        "tMaxC": 24.23,
+        "tMinC": 23.5
+      },
+      {
+        "date": "2026-09-12",
+        "ghi_kWh_m2_day": 4.063,
+        "ghi_Wm2": 169.3,
+        "toa_Wm2": null,
+        "tMaxC": 24.15,
+        "tMinC": 23.13
+      },
+      {
+        "date": "2026-09-13",
+        "ghi_kWh_m2_day": 4.213,
+        "ghi_Wm2": 175.56,
+        "toa_Wm2": null,
+        "tMaxC": 24.52,
+        "tMinC": 23.48
+      },
+      {
+        "date": "2026-09-14",
+        "ghi_kWh_m2_day": 6.004,
+        "ghi_Wm2": 250.17,
+        "toa_Wm2": null,
+        "tMaxC": 24.51,
+        "tMinC": 24.02
+      },
+      {
+        "date": "2026-09-15",
+        "ghi_kWh_m2_day": 6.573,
+        "ghi_Wm2": 273.89,
+        "toa_Wm2": null,
+        "tMaxC": 24.58,
+        "tMinC": 23.87
+      },
+      {
+        "date": "2026-09-16",
+        "ghi_kWh_m2_day": 6.161,
+        "ghi_Wm2": 256.7,
+        "toa_Wm2": null,
+        "tMaxC": 24.94,
+        "tMinC": 24.12
+      },
+      {
+        "date": "2026-09-17",
+        "ghi_kWh_m2_day": 4.66,
+        "ghi_Wm2": 194.17,
+        "toa_Wm2": null,
+        "tMaxC": 24.65,
+        "tMinC": 24.02
+      },
+      {
+        "date": "2026-09-18",
+        "ghi_kWh_m2_day": 6.121,
+        "ghi_Wm2": 255.06,
+        "toa_Wm2": null,
+        "tMaxC": 24.42,
+        "tMinC": 23.75
+      },
+      {
+        "date": "2026-09-19",
+        "ghi_kWh_m2_day": 6.453,
+        "ghi_Wm2": 268.87,
+        "toa_Wm2": null,
+        "tMaxC": 24.75,
+        "tMinC": 23.8
+      },
+      {
+        "date": "2026-09-20",
+        "ghi_kWh_m2_day": 5.048,
+        "ghi_Wm2": 210.35,
+        "toa_Wm2": null,
+        "tMaxC": 25,
+        "tMinC": 23.75
+      },
+      {
+        "date": "2026-09-21",
+        "ghi_kWh_m2_day": 5.584,
+        "ghi_Wm2": 232.68,
+        "toa_Wm2": null,
+        "tMaxC": 24.36,
+        "tMinC": 23.81
+      },
+      {
+        "date": "2026-09-22",
+        "ghi_kWh_m2_day": 6.65,
+        "ghi_Wm2": 277.09,
+        "toa_Wm2": null,
+        "tMaxC": 24.94,
+        "tMinC": 23.96
+      },
+      {
+        "date": "2026-09-23",
+        "ghi_kWh_m2_day": 6.682,
+        "ghi_Wm2": 278.42,
+        "toa_Wm2": null,
+        "tMaxC": 25.07,
+        "tMinC": 24.34
+      },
+      {
+        "date": "2026-09-24",
+        "ghi_kWh_m2_day": 6.645,
+        "ghi_Wm2": 276.86,
+        "toa_Wm2": null,
+        "tMaxC": 25.14,
+        "tMinC": 24.4
+      }
+    ]
+  },
+  "weather": null,
+  "images": [
+    {
+      "id": "as8-14-2392",
+      "title": "High-oblique view of Moon's surface showing earth rising above horizon",
+      "description": "AS8-14-2392 (21-27 Dec. 1968) --- High-oblique view of the moon's surface showing Earth rising above the lunar horizon, looking west-southwest, as photographed from the Apollo 8 spacecraft as it orbited the moon. The center of the picture i",
+      "href": "https://images-assets.nasa.gov/image/as8-14-2392/as8-14-2392~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/as8-14-2392/as8-14-2392~medium.jpg",
+      "credit": "NASA/JSC",
+      "dateCreated": "1968-12-22"
+    },
+    {
+      "id": "GRC-2023-C-10425",
+      "title": "Fission Surface Power",
+      "description": "Detail of the Fission Surface Power Structure that part of the research in providing power on the moon.",
+      "href": "https://images-assets.nasa.gov/image/GRC-2023-C-10425/GRC-2023-C-10425~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/GRC-2023-C-10425/GRC-2023-C-10425~medium.jpg",
+      "credit": "NASA/GRC",
+      "dateCreated": "2023-11-17"
+    },
+    {
+      "id": "KSC-2011-6868",
+      "title": "KSC-2011-6868",
+      "description": "CAPE CANAVERAL, Fla. – Bathed in light against an early morning sky, the United Launch Alliance Delta II Heavy rocket sits on Space Launch Complex 17B on Cape Canaveral Air Force Station in Florida as it waits to launch NASA’s twin Gravity ",
+      "href": "https://images-assets.nasa.gov/image/KSC-2011-6868/KSC-2011-6868~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/KSC-2011-6868/KSC-2011-6868~medium.jpg",
+      "credit": "NASA/KSC",
+      "dateCreated": "2011-09-10"
+    },
+    {
+      "id": "KSC-2011-6869",
+      "title": "KSC-2011-6869",
+      "description": "CAPE CANAVERAL, Fla. – Surrounded by an early morning sky, the United Launch Alliance Delta II Heavy rocket sits on Space Launch Complex 17B on Cape Canaveral Air Force Station in Florida as it waits to launch NASA’s twin Gravity Recovery a",
+      "href": "https://images-assets.nasa.gov/image/KSC-2011-6869/KSC-2011-6869~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/KSC-2011-6869/KSC-2011-6869~medium.jpg",
+      "credit": "NASA/KSC",
+      "dateCreated": "2011-09-10"
+    },
+    {
+      "id": "KSC-2011-6870",
+      "title": "KSC-2011-6870",
+      "description": "CAPE CANAVERAL, Fla. – A U.S. Air Force helicopter flies overhead as the United Launch Alliance Delta II Heavy rocket sits on Space Launch Complex 17B on Cape Canaveral Air Force Station in Florida waiting to launch NASA’s twin Gravity Reco",
+      "href": "https://images-assets.nasa.gov/image/KSC-2011-6870/KSC-2011-6870~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/KSC-2011-6870/KSC-2011-6870~medium.jpg",
+      "credit": "NASA/KSC",
+      "dateCreated": "2011-09-10"
+    },
+    {
+      "id": "KSC-2011-6867",
+      "title": "KSC-2011-6867",
+      "description": "CAPE CANAVERAL, Fla. – Surrounded by an early morning sky, the United Launch Alliance Delta II Heavy rocket sits on Space Launch Complex 17B on Cape Canaveral Air Force Station in Florida as it waits to launch NASA’s twin Gravity Recovery a",
+      "href": "https://images-assets.nasa.gov/image/KSC-2011-6867/KSC-2011-6867~medium.jpg",
+      "thumb": "https://images-assets.nasa.gov/image/KSC-2011-6867/KSC-2011-6867~medium.jpg",
+      "credit": "NASA/KSC",
+      "dateCreated": "2011-09-10"
+    }
+  ]
+}

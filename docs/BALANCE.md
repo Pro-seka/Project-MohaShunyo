@@ -4,12 +4,12 @@ Measured with scripted players over 60 seeds per cell (`node tests/engine.test.j
 
 | World / difficulty | Does nothing (idle) | Reacts only to emergencies and the food tip (casual) | Thoughtful (smart) | Stars: idle -> smart |
 |---|---|---|---|---|
-| Mars Cadet | 95 % win | 100 % | 100 % | 0.9 -> 2.7 |
+| Mars Cadet | 95 % win | 100 % | 100 % | 0.9 -> 2.6 |
 | Mars Commander | **0 %** (starves around hour 90) | 95 % | 93 % | 0.0 -> 1.7 |
 | Moon Cadet | 100 % | 100 % | 100 % | 1.0 -> 2.9 |
 | Moon Commander | **0 %** (starves around hour 90) | 72 % | 97 % | 0.0 -> 2.0 |
 
-How to read it: **Cadet is a gentle learning mode** (survival is likely) but skill shows in the stars (an idle crew gets about 1, a thoughtful one about 2.7). **Commander is where choices decide life or death.**
+How to read it: **Cadet is a gentle learning mode** (survival is likely) but skill shows in the stars (an idle crew gets about 1, a thoughtful one about 2.6). **Commander is where choices decide life or death.**
 
 ## What was changed from the two earlier builds, and why
 | Problem found | Fix |
